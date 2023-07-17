@@ -6,6 +6,7 @@ package Presentacion;
 
 import BussinesObject.Employees;
 import TransferObject.EmployeesDTO;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -45,9 +46,9 @@ public class FrmEmployees extends javax.swing.JFrame {
         txtCorreo.setText("");
         txtDireccion.setText("");
         txtEstado.setText("");
-        cmbSexo.setSelectedIndex(1);
-        cmbDocumento.setSelectedIndex(1);
-        cmbCategoria.setSelectedIndex(1);
+        cmbSexo.setSelectedIndex(0);
+        cmbDocumento.setSelectedIndex(0);
+        cmbCategoria.setSelectedIndex(0);
         txtCodigo.requestFocus();
     }
     
@@ -60,13 +61,13 @@ public class FrmEmployees extends javax.swing.JFrame {
                 ob[1] = p.getEmployee_name();
                 ob[2] = p.getEmployee_lastname();
                 ob[3] = p.getGender();
-                ob[4] = p.getId_type();
-                ob[5] = p.getId_number();
+                ob[4] = p.getDocument_type();
+                ob[5] = p.getDocument_number();
                 ob[6] = p.getPhone();
                 ob[7] = p.getEmail();
                 ob[8] = p.getEmployee_address();
                 ob[9] = p.getCategory();
-                ob[10] = p.isEmployee_status();
+                ob[10] = p.getEmployee_status();
                 modelo.addRow(ob);
             }
             tbEmployees.setModel(modelo);
@@ -121,6 +122,12 @@ public class FrmEmployees extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("BUSCAR:");
+
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyReleased(evt);
+            }
+        });
 
         jLabel2.setText("SEXO:");
 
@@ -180,8 +187,18 @@ public class FrmEmployees extends javax.swing.JFrame {
         });
 
         btnModificar.setText("MODIFICAR");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("ELIMINAR");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnCerrar.setText("CERRAR");
 
@@ -202,6 +219,11 @@ public class FrmEmployees extends javax.swing.JFrame {
                 "CODIGO", "NOMBRES", "APELLIDOS", "SEXO", "DOCUMENTO", "NRO DOCUMENTO", "CELULAR", "CORREO", "DIRECCION", "CATEGORIA", "ESTADO"
             }
         ));
+        tbEmployees.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tbEmployeesMouseReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbEmployees);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -211,20 +233,13 @@ public class FrmEmployees extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
+                        .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(33, 33, 33))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(9, 9, 9)))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -293,7 +308,7 @@ public class FrmEmployees extends javax.swing.JFrame {
                         .addComponent(jLabel13))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(75, 75, 75)
-                        .addComponent(lblMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 646, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -343,8 +358,8 @@ public class FrmEmployees extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lblMensaje)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addComponent(lblMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -359,19 +374,107 @@ public class FrmEmployees extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbDocumentoActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+            limpiarTexto();
+// TODO add your handling code here:
+    }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         String mensaje = employees.agregar(Integer.parseInt(txtCodigo.getText()), txtNombres.getText(), txtApellidos.getText(), 
-                cmbSexo.getModel().getSelectedItem().toString(), cmbDocumento.getModel().getSelectedItem().toString(), txtNroDocumento.getText(), txtCelular.getText(), 
-                txtCorreo.getText(), cmbCategoria.getModel().getSelectedItem().toString(), txtEstado.getText());
+                cmbSexo.getSelectedItem().toString(), cmbDocumento.getSelectedItem().toString(), txtNroDocumento.getText(), txtCelular.getText(), 
+                txtCorreo.getText(), txtDireccion.getText() ,cmbCategoria.getSelectedItem().toString(), txtEstado.getText());
         limpiarTabla();
         listar();
         limpiarTexto();
         lblMensaje.setText(mensaje);
 // TODO add your handling code here:
-    }//GEN-LAST:event_btnNuevoActionPerformed
-
-    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void tbEmployeesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbEmployeesMouseReleased
+        // TODO add your handling code here:
+        int fila = tbEmployees.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Debe Seleccionar una Fila");
+        } else {
+            id_employee = Integer.parseInt(tbEmployees.getValueAt(fila, 0).toString());
+            txtCodigo.setText(tbEmployees.getValueAt(fila, 0).toString());
+            txtNombres.setText(tbEmployees.getValueAt(fila, 1).toString());
+            txtApellidos.setText(tbEmployees.getValueAt(fila, 2).toString());
+            cmbSexo.setSelectedItem(tbEmployees.getValueAt(fila, 3).toString());
+            cmbDocumento.setSelectedItem(tbEmployees.getValueAt(fila, 4).toString());
+            txtNroDocumento.setText(tbEmployees.getValueAt(fila, 0).toString());
+            txtCelular.setText(tbEmployees.getValueAt(fila, 1).toString());
+            txtCorreo.setText(tbEmployees.getValueAt(fila, 2).toString());
+            txtDireccion.setText(tbEmployees.getValueAt(fila, 0).toString());
+            cmbCategoria.setSelectedItem(tbEmployees.getValueAt(fila, 1).toString());
+            txtEstado.setText(tbEmployees.getValueAt(fila, 2).toString());
+
+    }
+    }//GEN-LAST:event_tbEmployeesMouseReleased
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+        String mensaje = "";
+        int fila = tbEmployees.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Debe selecionar una Fila");
+        } else {
+            mensaje = employees.actualizar(id_employee, txtNombres.getText(), txtApellidos.getText(), 
+                cmbSexo.getSelectedItem().toString(), cmbDocumento.getSelectedItem().toString(), txtNroDocumento.getText(), txtCelular.getText(), 
+                txtCorreo.getText(), txtDireccion.getText() ,cmbCategoria.getSelectedItem().toString(), txtEstado.getText());
+        }
+        limpiarTabla();
+        listar();
+        lblMensaje.setText(mensaje);
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        String mensaje = "";
+        int fila = tbEmployees.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una Fila");
+        } else {
+            mensaje = employees.eliminar(id_employee);
+        }
+        limpiarTabla();
+        listar();
+        btnNuevoActionPerformed(evt);
+        lblMensaje.setText(mensaje);
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
+        // TODO add your handling code here:
+        if (!txtBuscar.getText().isEmpty()) {
+            id_employee = Integer.parseInt(txtBuscar.getText());
+            employeesDTO = employees.buscar(id_employee);
+            if (employeesDTO != null) {
+                limpiarTabla();
+                modelo = (DefaultTableModel) tbEmployees.getModel();
+                Object[] ob = new Object[11];
+                ob[0] = employeesDTO.getId_employee();
+                ob[1] = employeesDTO.getEmployee_name();
+                ob[2] = employeesDTO.getEmployee_lastname();
+                ob[3] = employeesDTO.getGender();
+                ob[4] = employeesDTO.getDocument_type();
+                ob[5] = employeesDTO.getDocument_number();
+                ob[6] = employeesDTO.getPhone();
+                ob[7] = employeesDTO.getEmail();
+                ob[8] = employeesDTO.getEmployee_address();
+                ob[9] = employeesDTO.getCategory();
+                ob[10] = employeesDTO.getEmployee_status();
+                modelo.addRow(ob);
+                tbEmployees.setModel(modelo);
+                lblMensaje.setText("Producto Encontrado");
+            } else {
+                lblMensaje.setText("Producto No encontrado");
+                limpiarTabla();
+            }
+        } else {
+            limpiarTabla();
+            listar();
+            lblMensaje.setText("");
+        }
+    }//GEN-LAST:event_txtBuscarKeyReleased
 
     /**
      * @param args the command line arguments

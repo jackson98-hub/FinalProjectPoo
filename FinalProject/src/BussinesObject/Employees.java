@@ -11,10 +11,9 @@ public class Employees {
     public Employees() {
         employeesDAO = new EmployeesDAO();
     }
-    public String agregar(int id_employee, String employee_name,  String employee_lastname, String gender, String id_type, String id_number,
-                           String phone, String email, String employee_address, String category, boolean employee_status) {
+    public String agregar(int id_employee, String employee_name, String employee_lastname, String gender, String document_type, String document_number, String phone, String email, String employee_address, String category, String employee_status) {
         String mensaje;
-        employeesDTO = new EmployeesDTO(id_employee, employee_name, employee_lastname, gender, id_type, id_number, phone, email, employee_address,
+        employeesDTO = new EmployeesDTO(id_employee, employee_name, employee_lastname, gender, document_type, document_number, phone, email, employee_address,
                                         category, employee_status);
         if (employeesDAO.agregar(employeesDTO)) {
             mensaje = "Registro Insertado";
@@ -24,10 +23,10 @@ public class Employees {
         return mensaje;
     }
     
-    public String actualizar(int id_employee, String employee_name,  String employee_lastname, String gender, String id_type, String id_number,
-                           String phone, String email, String employee_address, String category, boolean employee_status) {
+    public String actualizar(int id_employee, String employee_name,  String employee_lastname, String gender, String document_type, String document_number,
+                           String phone, String email, String employee_address, String category, String employee_status) {
         String mensaje;
-        employeesDTO = new EmployeesDTO(id_employee, employee_name, employee_lastname, gender, id_type, id_number, phone, email, employee_address,
+        employeesDTO = new EmployeesDTO(id_employee, employee_name, employee_lastname, gender, document_type, document_number, phone, email, employee_address,
                                         category, employee_status);
         if (employeesDAO.actualizar(employeesDTO)) {
             mensaje = " se actualizó exitosamente";

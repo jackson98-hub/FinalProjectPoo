@@ -4,21 +4,21 @@ public class EmployeesDTO {
     private String employee_name;
     private String employee_lastname;
     private String gender;
-    private String id_type;
-    private String id_number;
+    private String document_type;
+    private String document_number;
     private String phone;
     private String email;
     private String employee_address;
     private String category;
-    private boolean employee_status;
+    private String employee_status;
 
-    public EmployeesDTO(int id_employee, String employee_name, String employee_lastname, String gender, String id_type, String id_number, String phone, String email, String employee_address, String category, boolean employee_status) {
+    public EmployeesDTO(int id_employee, String employee_name, String employee_lastname, String gender, String document_type, String document_number, String phone, String email, String employee_address, String category, String employee_status) {
         this.id_employee = id_employee;
         this.employee_name = employee_name;
         this.employee_lastname = employee_lastname;
         this.gender = gender;
-        this.id_type = id_type;
-        this.id_number = id_number;
+        this.document_type = document_type;
+        this.document_number = document_number;
         this.phone = phone;
         this.email = email;
         this.employee_address = employee_address;
@@ -65,14 +65,6 @@ public class EmployeesDTO {
         this.gender = gender;
     }
 
-    public String getId_type() {
-        return id_type;
-    }
-
-    public void setId_type(String id_type) {
-        this.id_type = id_type;
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -105,20 +97,28 @@ public class EmployeesDTO {
         this.category = category;
     }
 
-    public boolean isEmployee_status() {
+    public String getDocument_type() {
+        return document_type;
+    }
+
+    public void setDocument_type(String document_type) {
+        this.document_type = document_type;
+    }
+
+    public String getDocument_number() {
+        return document_number;
+    }
+
+    public void setDocument_number(String document_number) {
+        this.document_number = document_number;
+    }
+
+    public String getEmployee_status() {
         return employee_status;
     }
 
-    public void setEmployee_status(boolean employee_status) {
+    public void setEmployee_status(String employee_status) {
         this.employee_status = employee_status;
-    }
-
-    public String getId_number() {
-        return id_number;
-    }
-
-    public void setId_number(String id_number) {
-        this.id_number = id_number;
-    }
+    }  
     
 }
