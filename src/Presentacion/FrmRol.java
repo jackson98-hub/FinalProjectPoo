@@ -93,7 +93,8 @@ public class FrmRol extends javax.swing.JFrame {
         jLabel2.setText("jLabel2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setLocation(new java.awt.Point(500, 200));
+        setTitle("ROLES");
+        setLocation(new java.awt.Point(400, 150));
 
         jLabel1.setText("REGISTRO DE ROLES");
 
@@ -343,6 +344,7 @@ public class FrmRol extends javax.swing.JFrame {
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     /**

@@ -91,6 +91,8 @@ public class FrmSale_detail extends javax.swing.JFrame {
         txtClose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("DETALLE VENTA");
+        setLocation(new java.awt.Point(200, 180));
 
         tSale_detail.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -156,6 +158,11 @@ public class FrmSale_detail extends javax.swing.JFrame {
         });
 
         txtClose.setText("CERRAR");
+        txtClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCloseActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -341,6 +348,11 @@ public class FrmSale_detail extends javax.swing.JFrame {
             listar();
         }
     }//GEN-LAST:event_txtSearchKeyReleased
+
+    private void txtCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCloseActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_txtCloseActionPerformed
 
     /**
      * @param args the command line arguments

@@ -105,6 +105,8 @@ public class FrmUsers extends javax.swing.JFrame {
         tbUsers = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("USUARIOS");
+        setLocation(new java.awt.Point(300, 170));
 
         jLabel1.setText("NOMBRE:");
 
@@ -161,6 +163,11 @@ public class FrmUsers extends javax.swing.JFrame {
         });
 
         btnCerrar.setText("CERRAR");
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
 
         tbUsers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -243,21 +250,22 @@ public class FrmUsers extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 889, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(119, 119, 119)
-                                .addComponent(btnNuevo)
-                                .addGap(41, 41, 41)
-                                .addComponent(btnAgregar)
-                                .addGap(52, 52, 52)
-                                .addComponent(btnModificar)
-                                .addGap(63, 63, 63)
-                                .addComponent(btnEliminar)
-                                .addGap(89, 89, 89)
-                                .addComponent(btnCerrar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(72, 72, 72)
-                                .addComponent(lblMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(295, 295, 295)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(119, 119, 119)
+                                        .addComponent(btnNuevo)
+                                        .addGap(41, 41, 41)
+                                        .addComponent(btnAgregar)
+                                        .addGap(52, 52, 52)
+                                        .addComponent(btnModificar)
+                                        .addGap(63, 63, 63)
+                                        .addComponent(btnEliminar)
+                                        .addGap(89, 89, 89)
+                                        .addComponent(btnCerrar))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(72, 72, 72)
+                                        .addComponent(lblMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(122, 122, 122)))))
                 .addContainerGap(93, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -393,7 +401,7 @@ public class FrmUsers extends javax.swing.JFrame {
             if (usersDTO != null) {
                 limpiarTabla();
                 modelo = (DefaultTableModel) tbUsers.getModel();
-                Object[] ob = new Object[11];
+                Object[] ob = new Object[8];
                 ob[0] = usersDTO.getId_user();
                 ob[1] = usersDTO.getUsers_name();
                 ob[2] = usersDTO.getUsers_lastname();
@@ -415,6 +423,11 @@ public class FrmUsers extends javax.swing.JFrame {
             lblMensaje.setText("");
         }
     }//GEN-LAST:event_txtBuscarKeyReleased
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnCerrarActionPerformed
 
     /**
      * @param args the command line arguments
