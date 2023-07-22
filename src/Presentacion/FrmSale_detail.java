@@ -6,6 +6,7 @@ package Presentacion;
 
 import BussinesObject.Sale_detail;
 import TransferObject.Sale_detailDTO;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,6 +19,7 @@ public class FrmSale_detail extends javax.swing.JFrame {
     Sale_detailDTO sale_detailDTO;
     Sale_detail sale_detail;
     int idSaleDetail;
+    Exportar obj;
 
     public FrmSale_detail() {
         modelo = new DefaultTableModel();
@@ -89,6 +91,7 @@ public class FrmSale_detail extends javax.swing.JFrame {
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         txtClose = new javax.swing.JButton();
+        btnReporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("DETALLE VENTA");
@@ -109,9 +112,9 @@ public class FrmSale_detail extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tSale_detail);
 
-        jLabel1.setText("BUSCAR");
+        jLabel1.setText("BUSCAR:");
 
-        jLabel2.setText("CODIGO");
+        jLabel2.setText("CODIGO:");
 
         jLabel3.setText("CODIGO VENTA");
 
@@ -164,6 +167,13 @@ public class FrmSale_detail extends javax.swing.JFrame {
             }
         });
 
+        btnReporte.setText("REPORTE");
+        btnReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -175,7 +185,7 @@ public class FrmSale_detail extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 847, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(74, 74, 74)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -202,13 +212,15 @@ public class FrmSale_detail extends javax.swing.JFrame {
                                     .addComponent(txtSearch)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnNuevo)
-                                .addGap(65, 65, 65)
+                                .addGap(46, 46, 46)
                                 .addComponent(btnAdd)
-                                .addGap(63, 63, 63)
+                                .addGap(38, 38, 38)
                                 .addComponent(btnUpdate)
-                                .addGap(80, 80, 80)
+                                .addGap(58, 58, 58)
                                 .addComponent(btnDelete)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                                .addGap(52, 52, 52)
+                                .addComponent(btnReporte)
+                                .addGap(50, 50, 50)
                                 .addComponent(txtClose)))))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
@@ -243,7 +255,8 @@ public class FrmSale_detail extends javax.swing.JFrame {
                     .addComponent(btnAdd)
                     .addComponent(btnUpdate)
                     .addComponent(btnDelete)
-                    .addComponent(txtClose))
+                    .addComponent(txtClose)
+                    .addComponent(btnReporte))
                 .addGap(37, 37, 37)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
@@ -354,6 +367,15 @@ public class FrmSale_detail extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_txtCloseActionPerformed
 
+    private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
+        // TODO add your handling code here:
+        try{
+            obj = new Exportar();
+            obj.exportarExcel(tSale_detail);
+        }catch(IOException ex){
+        }
+    }//GEN-LAST:event_btnReporteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -393,6 +415,7 @@ public class FrmSale_detail extends javax.swing.JFrame {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnNuevo;
+    private javax.swing.JButton btnReporte;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
