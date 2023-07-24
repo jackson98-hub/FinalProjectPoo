@@ -131,5 +131,23 @@ public class UsersDAO implements ICrud<UsersDTO>{
             conexion.desconectar();
         }
         return lista;
-    }  
+    }
+    
+    public boolean login(String user, String pss) {
+        try {
+            System.out.println("select * from Users where login_user="+user+" and login_password="+pss+"");
+            ps = conexion.conectar().prepareStatement("select * from Users where login_user='"+user+"' and login_password='"+pss+"'");
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+            
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            conexion.desconectar();
+        }
+        
+        return false;
+    }
 }

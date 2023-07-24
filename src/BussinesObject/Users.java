@@ -55,4 +55,8 @@ public class Users {
         }
         return null;
     }
+    
+    public boolean login(String user, String pss){
+        return usersDAO.login(user, pss);
+    }
 }
