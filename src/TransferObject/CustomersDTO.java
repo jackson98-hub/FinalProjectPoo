@@ -1,35 +1,42 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package TransferObject;
 
+/**
+ *
+ * @author jose.abad
+ */
 public class CustomersDTO {
-    private int idCustomers;
-    private String customerName, customerLastName, documentType, dcoumentNumber, phone, email, customerAdress, customerStatus;
+   private int customerId;
+   private String customerName, customerLastName, documentType, documentNumber, phone, email, customerAdress, customerStatus;
 
-    public CustomersDTO(int idCustomers, String customerName, String customerLastName, String documentType, String dcoumentNumber, String phone, String email, String customerAdress, String customerStatus) {
-        this.idCustomers = idCustomers;
+    public CustomersDTO(int customerId, String customerName, String customerLastName, String documentType, String documentNumber, String phone, String email, String customerAdress, String customerStatus) {
+        this.customerId = customerId;
         this.customerName = customerName;
         this.customerLastName = customerLastName;
         this.documentType = documentType;
-        this.dcoumentNumber = dcoumentNumber;
+        this.documentNumber = documentNumber;
         this.phone = phone;
         this.email = email;
         this.customerAdress = customerAdress;
         this.customerStatus = customerStatus;
     }
 
-    
-    public CustomersDTO(int idCustomers) {
-        this.idCustomers = idCustomers;
-    }
-
     public CustomersDTO() {
     }
 
-    public int getIdCustomers() {
-        return idCustomers;
+    public CustomersDTO(int customerId) {
+        this.customerId = customerId;
     }
 
-    public void setIdCustomers(int idCustomers) {
-        this.idCustomers = idCustomers;
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 
     public String getCustomerName() {
@@ -56,12 +63,12 @@ public class CustomersDTO {
         this.documentType = documentType;
     }
 
-    public String getDcoumentNumber() {
-        return dcoumentNumber;
+    public String getDocumentNumber() {
+        return documentNumber;
     }
 
-    public void setDcoumentNumber(String dcoumentNumber) {
-        this.dcoumentNumber = dcoumentNumber;
+    public void setDocumentNumber(String documentNumber) {
+        this.documentNumber = documentNumber;
     }
 
     public String getPhone() {
@@ -95,6 +102,5 @@ public class CustomersDTO {
     public void setCustomerStatus(String customerStatus) {
         this.customerStatus = customerStatus;
     }
-    
     
 }

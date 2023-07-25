@@ -3,19 +3,16 @@ package BussinesObject;
 import DataAccesObject.CustomersDAO;
 import TransferObject.CustomersDTO;
 import java.util.List;
-
 public class Customers {
-
     private CustomersDAO customersDAO;
     private CustomersDTO customersDTO;
 
     public Customers() {
-        customersDTO = new CustomersDTO();
+        customersDAO = new CustomersDAO();
     }
-
-    public String agregar(int idCustomers, String customerName, String customerLastName, String documentType, String dcoumentNumber, String phone, String email, String customerAdress, String customerStatus) {
-        customersDTO = new CustomersDTO(idCustomers, customerName, customerLastName, documentType, dcoumentNumber, phone, email, customerAdress, customerStatus);
+    public String agregar(int customerId, String customerName, String customerLastName, String documentType, String documentNumber, String phone, String email, String customerAdress, String customerStatus) {
         String mensaje;
+        customersDTO = new CustomersDTO(customerId, customerName, customerLastName, documentType, documentNumber, phone, email, customerAdress,customerStatus);
         if (customersDAO.agregar(customersDTO)) {
             mensaje = "Registro Insertado";
         } else {
@@ -24,30 +21,36 @@ public class Customers {
         return mensaje;
     }
     
-    public String actualizar(int idCustomers, String customerName, String customerLastName, String documentType, String dcoumentNumber, String phone, String email, String customerAdress, String customerStatus) {
-        customersDTO = new CustomersDTO(idCustomers, customerName, customerLastName, documentType, dcoumentNumber, phone, email, customerAdress, customerStatus);
+        public String actualizar(int customerId, String customerName, String customerLastName, String documentType, String documentNumber, String phone, String email, String customerAdress, String customerStatus) {
+        String mensaje;
+        customersDTO = new CustomersDTO(customerId, customerName, customerLastName, documentType, documentNumber, phone, email, customerAdress,customerStatus);
         if (customersDAO.actualizar(customersDTO)) {
-            return "se actualizó exitosamente";
+            mensaje = " se actualizó exitosamente";
+        } else {
+            mensaje = "Error , no se pudo actualizar";
         }
-        return null;
+        return mensaje;
     }
-
-    public String eliminar(int idCustomers) {
-        customersDTO = new CustomersDTO(idCustomers);
+        
+    public String eliminar(int customerId) {
+        String mensaje;
+        customersDTO = new CustomersDTO(customerId);
         if (customersDAO.eliminar(customersDTO)) {
-            return "Registro Eliminado";
+            mensaje = "Registro Eliminado";
+        } else {
+            mensaje = "Registro no eliminado";
         }
-        return null;
+        return mensaje;
     }
-
-    public CustomersDTO buscar(int idCustomer) {
-        customersDTO = customersDAO.buscar(new CustomersDTO(idCustomer));
+    
+    public CustomersDTO buscar(int customerId) {
+        customersDTO = customersDAO.buscar(new CustomersDTO(customerId));
         if (customersDTO != null) {
             return customersDTO;
         }
         return null;
     }
-
+    
     public List<CustomersDTO> listar() {
         if (customersDAO.listar() != null) {
             List<CustomersDTO> lista = customersDAO.listar();
