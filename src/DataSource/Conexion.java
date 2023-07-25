@@ -10,8 +10,8 @@ import javax.swing.JOptionPane;
 public class Conexion {
     private Connection conex;
     private String url ="jdbc:sqlserver://localhost:1433;databaseName=GSP_BD;trustServerCertificate=true";
-    private String user="jose";
-    private String password="lora1234.";
+    private String user="sa";
+    private String password="Ajar7323$";
     
     public Conexion() {
     }

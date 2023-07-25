@@ -47,7 +47,7 @@ public class FrmEmployees extends javax.swing.JFrame {
         txtCelular.setText("");
         txtCorreo.setText("");
         txtDireccion.setText("");
-        txtEstado.setText("");
+        cmbStatus.setSelectedIndex(0);
         cmbSexo.setSelectedIndex(0);
         cmbDocumento.setSelectedIndex(0);
         cmbCategoria.setSelectedIndex(0);
@@ -107,8 +107,6 @@ public class FrmEmployees extends javax.swing.JFrame {
         txtCelular = new javax.swing.JTextField();
         txtCorreo = new javax.swing.JTextField();
         txtDireccion = new javax.swing.JTextField();
-        txtEstado = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
         cmbSexo = new javax.swing.JComboBox<>();
         cmbDocumento = new javax.swing.JComboBox<>();
         cmbCategoria = new javax.swing.JComboBox<>();
@@ -121,10 +119,11 @@ public class FrmEmployees extends javax.swing.JFrame {
         tbEmployees = new javax.swing.JTable();
         lblMensaje = new javax.swing.JLabel();
         btnReporte = new javax.swing.JButton();
+        cmbStatus = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("EMPLEADOS");
-        setLocation(new java.awt.Point(200, 150));
+        setLocation(new java.awt.Point(310, 150));
 
         jLabel1.setText("BUSCAR:");
 
@@ -157,8 +156,6 @@ public class FrmEmployees extends javax.swing.JFrame {
 
         jLabel12.setText("ESTADO:");
 
-        jLabel13.setText("REGISTRO DE EMPLEADOS");
-
         cmbSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "F" }));
         cmbSexo.setToolTipText("");
         cmbSexo.setName(""); // NOI18N
@@ -177,6 +174,9 @@ public class FrmEmployees extends javax.swing.JFrame {
 
         cmbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "VENDEDOR", "ADMINISTRADOR", "GERENTE", "REPARTIDOR", "LIMPIEZA" }));
 
+        btnNuevo.setBackground(new java.awt.Color(51, 51, 255));
+        btnNuevo.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
+        btnNuevo.setForeground(new java.awt.Color(255, 255, 255));
         btnNuevo.setText("NUEVO");
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -184,6 +184,9 @@ public class FrmEmployees extends javax.swing.JFrame {
             }
         });
 
+        btnAgregar.setBackground(new java.awt.Color(51, 51, 255));
+        btnAgregar.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
+        btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
         btnAgregar.setText("AGREGAR");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,6 +194,9 @@ public class FrmEmployees extends javax.swing.JFrame {
             }
         });
 
+        btnModificar.setBackground(new java.awt.Color(51, 51, 255));
+        btnModificar.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
+        btnModificar.setForeground(new java.awt.Color(255, 255, 255));
         btnModificar.setText("MODIFICAR");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -198,6 +204,9 @@ public class FrmEmployees extends javax.swing.JFrame {
             }
         });
 
+        btnEliminar.setBackground(new java.awt.Color(51, 51, 255));
+        btnEliminar.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminar.setText("ELIMINAR");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,6 +214,9 @@ public class FrmEmployees extends javax.swing.JFrame {
             }
         });
 
+        btnCerrar.setBackground(new java.awt.Color(51, 51, 255));
+        btnCerrar.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
+        btnCerrar.setForeground(new java.awt.Color(255, 255, 255));
         btnCerrar.setText("CERRAR");
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -212,6 +224,7 @@ public class FrmEmployees extends javax.swing.JFrame {
             }
         });
 
+        tbEmployees.setBackground(new java.awt.Color(204, 255, 255));
         tbEmployees.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -227,6 +240,9 @@ public class FrmEmployees extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbEmployees);
 
+        btnReporte.setBackground(new java.awt.Color(51, 51, 255));
+        btnReporte.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
+        btnReporte.setForeground(new java.awt.Color(255, 255, 255));
         btnReporte.setText("REPORTE");
         btnReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -234,14 +250,22 @@ public class FrmEmployees extends javax.swing.JFrame {
             }
         });
 
+        cmbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 646, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 940, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -271,7 +295,7 @@ public class FrmEmployees extends javax.swing.JFrame {
                                 .addComponent(btnModificar)
                                 .addGap(32, 32, 32))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(102, 102, 102)
+                        .addGap(63, 63, 63)
                         .addComponent(btnNuevo)
                         .addGap(59, 59, 59)
                         .addComponent(btnAgregar)
@@ -290,43 +314,29 @@ public class FrmEmployees extends javax.swing.JFrame {
                             .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addComponent(btnReporte)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(btnCerrar)
-                                .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(382, 382, 382)
-                .addComponent(jLabel13)
-                .addContainerGap(449, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 646, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 940, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17))
+                        .addGap(28, 28, 28)
+                        .addComponent(btnCerrar))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(cmbStatus, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cmbCategoria, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(26, 26, 26))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel13)
-                .addGap(18, 18, 18)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel6)
@@ -355,9 +365,9 @@ public class FrmEmployees extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(jLabel9)
                     .addComponent(jLabel12)
-                    .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNuevo)
@@ -366,7 +376,7 @@ public class FrmEmployees extends javax.swing.JFrame {
                     .addComponent(btnModificar)
                     .addComponent(btnAgregar)
                     .addComponent(btnReporte))
-                .addGap(18, 18, 18)
+                .addGap(38, 38, 38)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -392,7 +402,7 @@ public class FrmEmployees extends javax.swing.JFrame {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         String mensaje = employees.agregar(Integer.parseInt(txtCodigo.getText()), txtNombres.getText(), txtApellidos.getText(), 
                 cmbSexo.getSelectedItem().toString(), cmbDocumento.getSelectedItem().toString(), txtNroDocumento.getText(), txtCelular.getText(), 
-                txtCorreo.getText(), txtDireccion.getText() ,cmbCategoria.getSelectedItem().toString(), txtEstado.getText());
+                txtCorreo.getText(), txtDireccion.getText() ,cmbCategoria.getSelectedItem().toString(), cmbStatus.getSelectedItem().toString());
         limpiarTabla();
         listar();
         limpiarTexto();
@@ -417,7 +427,7 @@ public class FrmEmployees extends javax.swing.JFrame {
             txtCorreo.setText(tbEmployees.getValueAt(fila, 7).toString());
             txtDireccion.setText(tbEmployees.getValueAt(fila, 8).toString());
             cmbCategoria.setSelectedItem(tbEmployees.getValueAt(fila, 9).toString());
-            txtEstado.setText(tbEmployees.getValueAt(fila, 10).toString());
+            cmbStatus.setSelectedItem(tbEmployees.getValueAt(fila, 10));
 
     }
     }//GEN-LAST:event_tbEmployeesMouseReleased
@@ -431,7 +441,7 @@ public class FrmEmployees extends javax.swing.JFrame {
         } else {
             mensaje = employees.actualizar(id_employee, txtNombres.getText(), txtApellidos.getText(), 
                 cmbSexo.getSelectedItem().toString(), cmbDocumento.getSelectedItem().toString(), txtNroDocumento.getText(), txtCelular.getText(), 
-                txtCorreo.getText(), txtDireccion.getText() ,cmbCategoria.getSelectedItem().toString(), txtEstado.getText());
+                txtCorreo.getText(), txtDireccion.getText() ,cmbCategoria.getSelectedItem().toString(), cmbStatus.getSelectedItem().toString());
         }
         limpiarTabla();
         listar();
@@ -546,11 +556,11 @@ public class FrmEmployees extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbCategoria;
     private javax.swing.JComboBox<String> cmbDocumento;
     private javax.swing.JComboBox<String> cmbSexo;
+    private javax.swing.JComboBox<String> cmbStatus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -568,7 +578,6 @@ public class FrmEmployees extends javax.swing.JFrame {
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDireccion;
-    private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtNombres;
     private javax.swing.JTextField txtNroDocumento;
     // End of variables declaration//GEN-END:variables

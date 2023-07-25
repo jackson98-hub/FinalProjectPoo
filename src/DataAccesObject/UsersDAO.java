@@ -52,9 +52,11 @@ public class UsersDAO implements ICrud<UsersDTO>{
             ps.setString(5, t.getUser_status());
             ps.setInt(6, t.getId_rol());
             ps.setInt(7, t.getId_employee()); 
+            ps.setInt(8, t.getId_user());
             r = ps.executeUpdate();
             return r == 1;
         } catch (SQLException ex) {
+            System.out.print(ex.getMessage());
             return false;
         } finally {
             conexion.desconectar();
